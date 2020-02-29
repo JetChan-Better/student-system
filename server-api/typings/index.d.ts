@@ -1,20 +1,13 @@
 import "egg"
-import { Mongoose, Model, Document } from "mongoose"
+import * as mongoose from "mongoose"
 
-declare module "egg" {}
-
-declare module "SystemDao" {
-  interface IStudent {
-    studentId: string
-    name: string
-    birthday: number
-    idCard: string
-    grade: string
-    admissionDate: number
-    graduateDate: number
-
-    createTime: number
-    updateTime: number
+declare module "egg" {
+  // extend app
+  interface Application {
+    model: IModel
   }
-  type Student = IStudent
+  // extend context
+  interface Context {
+    model: IModel
+  }
 }

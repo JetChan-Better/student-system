@@ -3,11 +3,9 @@
 
 import 'egg';
 import ExportStudent from '../../../app/service/Student';
-import ExportTest from '../../../app/service/Test';
 
 declare module 'egg' {
   interface IService {
     student: ExportStudent;
-    test: ExportTest;
   }
 }

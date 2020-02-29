@@ -13,6 +13,7 @@ export interface IStudent {
   createTime: number
   updateTime: number
 }
+export type Student = IStudent
 
 const StudentSchema: Schema = new Schema({
   studentId: {

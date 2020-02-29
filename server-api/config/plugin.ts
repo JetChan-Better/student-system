@@ -1,4 +1,4 @@
-import { EggPlugin } from "egg";
+import { EggPlugin } from "egg"
 
 const plugin: EggPlugin = {
   // static: true,
@@ -9,7 +9,10 @@ const plugin: EggPlugin = {
   mongoose: {
     enable: true,
     package: "egg-mongoose"
+  },
+  security: {
+    enable: false
   }
-};
+}
 
-export default plugin;
+export default plugin
