@@ -47,10 +47,9 @@ const StudentSchema: Schema = new Schema({
   }
 })
 export interface IStudentDocument extends IStudent, Document {}
-
 export interface IStudentModel extends Model<IStudentDocument> {}
 
-export default (app: Application): IStudentModel => {
+export default (app: Application): Model<IStudentDocument> => {
   const { mongoose } = app
-  return mongoose.model<IStudentDocument, IStudentModel>("student", StudentSchema)
+  return mongoose.model<IStudentDocument>("student", StudentSchema)
 }
