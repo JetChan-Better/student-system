@@ -2,7 +2,7 @@
 // Do not modify this file!!!!!!!!!
 
 import 'egg';
-import ExportStudent from '../../../app/service/Student';
+import ExportStudent from '../../../app/service/student';
 
 declare module 'egg' {
   interface IService {
