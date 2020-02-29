@@ -25,12 +25,12 @@ export const convertModel = data => ({
  * Student Service
  */
 export default class StudentService extends Service {
-  public async getPageList(pi: number = 1, ps: number = 10, studentId?: string) {
+  public async getPageList(pi: number = 1, ps: number = 10, name?: string) {
     const { Student } = this.ctx.model
 
     const $where = {}
-    if (studentId) {
-      $where["studentId"] = { $regex: studentId }
+    if (name) {
+      $where["name"] = { $regex: name }
     }
     const totalCount = await Student.find($where).countDocuments()
 
@@ -77,12 +77,25 @@ export default class StudentService extends Service {
 
   public async destroy(_id: string): Promise<Result<any>> {
     const { ctx } = this
-    console.log("_id", _id)
     const student = await ctx.model.Student.findOne({ _id })
     if (!student) {
       return { status: false, message: "student not found" }
     }
     const result = await ctx.model.Student.remove({ _id })
     return { status: true, data: result }
+  }
+
+  public async getNameList(name?: string, ps: number = 10): Promise<Result<Array<any>>> {
+    const { Student } = this.ctx.model
+
+    const $where = {}
+    if (name) {
+      $where["name"] = { $regex: name }
+    }
+    const list = await Student.find($where)
+      .limit(ps)
+      .select({ name: 1 })
+      .exec()
+    return { status: true, data: list.map(item => ({ name: item.name })) }
   }
 }

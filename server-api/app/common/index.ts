@@ -1,6 +1,6 @@
 import * as moment from "moment"
 
-export function timetrans(unix: number, formatStr: string = "YYYY-MM-DD") {
+export function timetrans(unix: number, formatStr: string = "YYYY-MM-DD"): string {
   return moment(unix).format(formatStr)
 }
 

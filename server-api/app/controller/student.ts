@@ -4,9 +4,9 @@ import * as common from "../common"
 export default class StudentController extends Controller {
   public async index() {
     const { ctx } = this
-    const { pi = 1, ps = 10, studentId = null } = ctx.query
+    const { pi = 1, ps = 10, name = null } = ctx.query
     console.log("resful get")
-    ctx.body = await this.ctx.service.student.getPageList(pi, ps, studentId)
+    ctx.body = await this.ctx.service.student.getPageList(pi, ps, name)
   }
 
   public async create() {
@@ -52,5 +52,11 @@ export default class StudentController extends Controller {
     }
     const reuslt = await ctx.service.student.destroy(id)
     ctx.body = reuslt
+  }
+
+  public async namelist() {
+    const { ctx } = this
+    const { ps = 5, name = null } = ctx.query
+    ctx.body = await this.ctx.service.student.getNameList(name, ps)
   }
 }
