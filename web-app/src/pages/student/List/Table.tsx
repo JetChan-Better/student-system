@@ -74,7 +74,7 @@ function StudentTable({ student, dispatch }: StudentTableProps) {
 
   return (
     <React.Fragment>
-      <div>
+      <div className={style.searchLine}>
         <SearchLine
           fetch={searhFetch}
           fetchOptions={fetchOptions}
@@ -82,7 +82,7 @@ function StudentTable({ student, dispatch }: StudentTableProps) {
           options={searchOptions}
           style={{ width: '200px' }}
         />
-        <Button className={style.addBtn} type="primary" size="small" onClick={() => addStudent()}>
+        <Button type="primary" size="small" onClick={() => addStudent()}>
           新增
         </Button>
       </div>
@@ -95,10 +95,10 @@ function StudentTable({ student, dispatch }: StudentTableProps) {
           current: student.pi,
           showSizeChanger: true,
           pageSize: student.ps,
-          pageSizeOptions: ['30', '20', '10'],
+          pageSizeOptions: ['30', '20', '10', '5'],
           total: student.totalCount,
         }}
-        scroll={{ x: 1300 }}
+        scroll={{ x: 1500 }}
         onChange={handleTableChange}
       >
         <Table.Column<IStudent> key="studentId" title="学号" dataIndex="studentId" />
