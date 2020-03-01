@@ -5,7 +5,6 @@ export default class StudentController extends Controller {
   public async index() {
     const { ctx } = this
     const { pi = 1, ps = 10, name = null } = ctx.query
-    console.log("resful get")
     ctx.body = await this.ctx.service.student.getPageList(Number(pi), Number(ps), name)
   }
 
