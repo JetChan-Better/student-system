@@ -6,7 +6,7 @@ export default class StudentController extends Controller {
     const { ctx } = this
     const { pi = 1, ps = 10, name = null } = ctx.query
     console.log("resful get")
-    ctx.body = await this.ctx.service.student.getPageList(pi, ps, name)
+    ctx.body = await this.ctx.service.student.getPageList(Number(pi), Number(ps), name)
   }
 
   public async create() {
@@ -39,6 +39,9 @@ export default class StudentController extends Controller {
     const body = ctx.request.body
     const result = await this.ctx.service.student.update(id, {
       ...body,
+      birthday: common.datetarns(body.birthday),
+      admissionDate: common.datetarns(body.admissionDate),
+      graduateDate: common.datetarns(body.graduateDate),
       updateTime: common.getNowTime()
     })
     ctx.body = result
@@ -57,6 +60,6 @@ export default class StudentController extends Controller {
   public async namelist() {
     const { ctx } = this
     const { ps = 5, name = null } = ctx.query
-    ctx.body = await this.ctx.service.student.getNameList(name, ps)
+    ctx.body = await this.ctx.service.student.getNameList(name, Number(ps))
   }
 }
